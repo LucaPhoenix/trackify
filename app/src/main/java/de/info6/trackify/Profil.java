@@ -3,7 +3,9 @@ package de.info6.trackify;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,5 +32,13 @@ public class Profil extends AppCompatActivity {
         editText_hauptverkehrsmittel = findViewById(R.id.editText_hauptverkehrsmittel);
 
         button_speichernUserProfil = findViewById(R.id.button_speichernProfil);
+
+        button_speichernUserProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Profil.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
