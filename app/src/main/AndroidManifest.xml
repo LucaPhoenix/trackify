@@ -10,6 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trackify">
         <activity
+            android:name=".Profil"
+            android:exported="true" />
+        <activity
+            android:name=".Umfrage"
+            android:exported="true" />
+        <activity
+            android:name=".FahrtBeenden"
+            android:exported="true" />
+        <activity
+            android:name=".AktiveFahrtProblem"
+            android:exported="true" />
+        <activity
+            android:name=".Middleactivity"
+            android:exported="true" />
+        <activity
+            android:name=".AktiveFahrtHaltestelle"
+            android:exported="true" />
+        <activity
+            android:name=".NeueFahrtStartzeit"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

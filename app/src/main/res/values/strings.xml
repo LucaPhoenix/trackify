@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Trackify</string>
+
+    <!--Main Activity-->
+    <string name="button_neueFahrt">Neue Fahrt beginnen</string>
+    <string name="button_bisherigeFahrten">Bisherige Fahrten</string>
+    <string name="button_exportieren">Exportieren</string>
+
+
 </resources>
