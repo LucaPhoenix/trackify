@@ -39,7 +39,7 @@ public class NeueFahrtStartzeit extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NeueFahrtStartzeit.this, MainActivity.class);
-                intent.putExtra("aktiveFahrt", true);
+                intent.putExtra("aktiveFahrtHaltestelle", true);
                 startActivity(intent);
             }
         });

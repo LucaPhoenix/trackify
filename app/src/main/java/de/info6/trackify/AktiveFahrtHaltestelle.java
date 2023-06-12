@@ -36,7 +36,7 @@ public class AktiveFahrtHaltestelle extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AktiveFahrtHaltestelle.this, MainActivity.class);
-                intent.putExtra("aktiveFahrtHaltestelle", true);
+                intent.putExtra("aktiveFahrt", true);
                 startActivity(intent);
             }
         });
