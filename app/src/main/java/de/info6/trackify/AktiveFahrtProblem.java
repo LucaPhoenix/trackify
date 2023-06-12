@@ -34,7 +34,7 @@ public class AktiveFahrtProblem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AktiveFahrtProblem.this, MainActivity.class);
-                intent.putExtra("aktiveFahrtHaltestelle", true);
+                intent.putExtra("aktiveFahrt", true);
                 startActivity(intent);
             }
         });

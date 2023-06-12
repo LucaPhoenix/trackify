@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         //If aktiveFahrt == true, dann umbenennen von Button
         if (aktiveFahrt){
             buttonNeueFahrt.setText("Aktive Fahrt fortführen");
+        } else if (aktiveFahrtHaltestelle) {
+            buttonNeueFahrt.setText("Einsteigen");
         }
 
 
@@ -58,18 +60,18 @@ public class MainActivity extends AppCompatActivity {
         buttonNeueFahrt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!aktiveFahrt) {
-                    Intent intent = new Intent(MainActivity.this, NeueFahrtStartzeit.class);
-                    startActivity(intent);
-                }
-
-                if (!aktiveFahrtHaltestelle) {
+                if (aktiveFahrt) {
                     Intent intent = new Intent(MainActivity.this, Middleactivity.class);
                     startActivity(intent);
                 }
 
-                else {
+                else if (aktiveFahrtHaltestelle) {
                     Intent intent = new Intent(MainActivity.this, AktiveFahrtHaltestelle.class);
+                    startActivity(intent);
+                }
+
+                else {
+                    Intent intent = new Intent(MainActivity.this, NeueFahrtStartzeit.class);
                     startActivity(intent);
                 }
             }
