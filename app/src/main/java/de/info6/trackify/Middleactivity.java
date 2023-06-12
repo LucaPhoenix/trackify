@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class Middleactivity extends AppCompatActivity {
 
-    Button button_probleme, button_fahrtBeenden;
+    Button button_probleme, button_fahrtBeenden, button_umsteigen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class Middleactivity extends AppCompatActivity {
 
         //Buttons initialisieren
         button_probleme = findViewById(R.id.button_problem);
+        button_umsteigen = findViewById(R.id.button_umsteigen);
         button_fahrtBeenden = findViewById(R.id.button_fahrtBeenden);
 
 
@@ -32,6 +33,15 @@ public class Middleactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Middleactivity.this, AktiveFahrtProblem.class);
+                startActivity(intent);
+            }
+        });
+
+        button_umsteigen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Middleactivity.this, MainActivity.class);
+                intent.putExtra("aktiveFahrtHaltestelle", true);
                 startActivity(intent);
             }
         });

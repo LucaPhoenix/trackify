@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Middleactivity">
 
+    <Button
+        android:id="@+id/button_umsteigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="40dp"
+        android:text="Umsteigen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_problem" />
+
     <include
         android:id="@+id/include4"
         layout="@layout/toolbar_main"
@@ -32,5 +42,5 @@
         android:layout_marginTop="40dp"
         android:text="Fahrt beenden"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_problem" />
+        app:layout_constraintTop_toBottomOf="@+id/button_umsteigen" />
 </androidx.constraintlayout.widget.ConstraintLayout>
