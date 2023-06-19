@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.util.Objects;
@@ -17,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
     Button buttonNeueFahrt, buttonBisherigeFahrten, buttonExportieren;
 
     ImageView gameification;
-
-    ImageButton imageButton_profile;
 
     boolean aktiveFahrt, aktiveFahrtHaltestelle;
 
@@ -50,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         //ImageView initialisieren
         gameification = findViewById(R.id.imageView_gamefication);
-
-        imageButton_profile = findViewById(R.id.imageButton_Profile);
 
         //If aktiveFahrt == true, dann umbenennen von Button
         if (aktiveFahrt){
@@ -93,14 +88,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-            }
-        });
-
-        imageButton_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Profil.class);
-                startActivity(intent);
             }
         });
 
