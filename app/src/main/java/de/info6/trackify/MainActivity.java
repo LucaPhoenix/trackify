@@ -1,5 +1,6 @@
 package de.info6.trackify;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -8,8 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.util.Objects;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,10 +25,50 @@ public class MainActivity extends AppCompatActivity {
 
     boolean aktiveFahrt, aktiveFahrtHaltestelle;
 
+    //Firebase Nutzer
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Firebase initialisieren
+        FirebaseApp.initializeApp(this);
+
+        //Firebase Nutzer lokal abrufen
+        mAuth = FirebaseAuth.getInstance();
+
+        //Firebase Nutzer anonym anmelden
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this,  " Login succesfull", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(MainActivity.this,  " Login failed", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+
+
+        /*
+        mAuth.signInWithEmailAndPassword("hahn.luca@web.de", "Passwort").addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+         */
+
+
 
         //Intent abrufen
         Intent intentStart = getIntent();
@@ -87,11 +133,23 @@ public class MainActivity extends AppCompatActivity {
         buttonExportieren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                doSomething();
             }
         });
 
 
 
     }
+
+    public void doSomething(){
+
+        FirebaseHelper firebaseHelper = new FirebaseHelper();
+
+        firebaseHelper.dokumentInFirestoreSpeichern("wert1", "wert2", "wert3", "wert4");
+
+        Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_LONG).show();
+
+    }
+
+
 }
