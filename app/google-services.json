@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "131469174593",
+    "project_id": "trackify-d3c8a",
+    "storage_bucket": "trackify-d3c8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131469174593:android:575cef4f75a8495f09a3c0",
+        "android_client_info": {
+          "package_name": "de.info6.trackify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "131469174593-qd5djjn7mrj3o0ssgt6o11lktf5ihg7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3CsGEyWVKecsqcEpRdhlzVrg6GcBm7h8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "131469174593-qd5djjn7mrj3o0ssgt6o11lktf5ihg7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
