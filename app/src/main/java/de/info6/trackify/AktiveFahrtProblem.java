@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.ByteArrayOutputStream;
+
 public class AktiveFahrtProblem extends AppCompatActivity {
 
 
@@ -68,6 +70,12 @@ public class AktiveFahrtProblem extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AktiveFahrtProblem.this, MainActivity.class);
                 intent.putExtra("aktiveFahrt", true);
+
+                //Bitmap to Byte
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmapProblem.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                intent.putExtra("photoProblem", byteArray);
                 startActivity(intent);
             }
         });
