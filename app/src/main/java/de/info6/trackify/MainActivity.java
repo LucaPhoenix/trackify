@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView gameification;
 
     ImageButton imageButton_profile;
+
+    Bitmap photoProblem;
 
     boolean aktiveFahrt, aktiveFahrtHaltestelle;
 
@@ -68,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         if(intentStart != null){
             aktiveFahrt = intentStart.getBooleanExtra("aktiveFahrt", false);
             aktiveFahrtHaltestelle = intentStart.getBooleanExtra("aktiveFahrtHaltestelle", false);
+
+            //Die folgenden drei Zeilen sind nötig für das Problem Foto
+            byte[] byteArray = getIntent().getByteArrayExtra("photoProblem");
+            if (byteArray != null) {
+                photoProblem = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            }
         }
 
         //Toolbar initialisieren
@@ -174,11 +183,8 @@ public class MainActivity extends AppCompatActivity {
                 "wert16", idNeu);
 
 
-
-        Bitmap bitmapProblem = ((BitmapDrawable) gameification.getDrawable()).getBitmap();
-
         //Photos hochladen
-        firebaseHelper.bildInFirebaseStorageSpeichern(bitmapProblem, "problem", idNeu);
+        firebaseHelper.bildInFirebaseStorageSpeichern(photoProblem, "problem", idNeu);
 
         /*
         Startzeit
