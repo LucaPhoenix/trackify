@@ -56,24 +56,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-
-        /*
-        mAuth.signInWithEmailAndPassword("hahn.luca@web.de", "Passwort").addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Login successfull", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-         */
-
-
-
         //Intent abrufen
         Intent intentStart = getIntent();
 
@@ -149,18 +131,62 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseHelper firebaseHelper = new FirebaseHelper();
 
+        /*
+        Startzeit
+        Gewünschte Ankunftzeit
+
+        Ankunft Haltestelle
+        Startzeit Fahrt
+
+        Beschreibung Problem
+        Foto Problem
+
+        Umsteigen Ankunft Haltestelle
+        Umsteigen Startzeit Fahrt
+
+        Endzeit Fahrt
+        Ankunft Ziel
+
+        Umfrage Antworten
+         */
+
         //Dokument und Photo Id
         String idNeu = UUID.randomUUID().toString();
 
+
         //Daten hochladen
-        firebaseHelper.dokumenteInFirebaseSpeichern("wert1", "wert2", "wert3", "wert4", "testdokument");
+        firebaseHelper.dokumenteInFirebaseSpeichern("wert1", "wert2", "wert3", "wert4",
+                "wert5", "wert6", "wert7", "wert8", "wert9",
+                "wert10", "wert11", "wert12", "wert13", "wert14", "wert15",
+                "wert16", idNeu);
 
 
-        Bitmap bitmap = ((BitmapDrawable) gameification.getDrawable()).getBitmap();
 
+        Bitmap bitmapProblem = ((BitmapDrawable) gameification.getDrawable()).getBitmap();
 
         //Photos hochladen
-        firebaseHelper.bildInFirebaseStorageSpeichern(bitmap, "einstieg", idNeu);
+        firebaseHelper.bildInFirebaseStorageSpeichern(bitmapProblem, "problem", idNeu);
+
+        /*
+        Startzeit
+        Gewünschte Ankunftzeit
+
+        Ankunft Haltestelle
+        Startzeit Fahrt
+
+        Beschreibung Problem
+        Foto Problem
+
+        Umsteigen Ankunft Haltestelle
+        Umsteigen Startzeit Fahrt
+
+        Endzeit Fahrt
+        Ankunft Ziel
+
+        Umfrage Antworten
+
+
+         */
 
     }
 

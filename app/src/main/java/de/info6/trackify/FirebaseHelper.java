@@ -24,18 +24,31 @@ public class FirebaseHelper {
 
     String id;
 
-    public void dokumenteInFirebaseSpeichern(String wert1, String wert2, String wert3, String wert4, String id) {
+    public void dokumenteInFirebaseSpeichern(String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle, String startzeitFahrt,
+                                             String beschreibungProblem, String umsteigenAnkunfthaltestelle, String umsteigenStartzeitFahrt, String endzeitFahrt,
+                                             String ankunftszeitZiel, String umfrageAntwort1, String umfrageAntwort2, String umfrageAntwort3,
+                                             String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String id) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-
         //Dokument erstellen
         Map<String, Object> fahrt = new HashMap<>();
-        fahrt.put("Startzeit", wert1);
-        fahrt.put("Ankunft_Haltestelle", wert2);
-        fahrt.put("Abfahrt_Straßenbahn", wert3);
-        fahrt.put("Ankunft_Endhaltestelle", wert4);
+        fahrt.put("Startzeit", startzeit);
+        fahrt.put("GewuenschteAnkunftszeit", gewuenschteAnkunftszeit);
+        fahrt.put("AnkunftHaltestelle", ankunftHaltestelle);
+        fahrt.put("StartzeitFahrt", startzeitFahrt);
+        fahrt.put("AnkunftHaltestelleUmstieg", umsteigenAnkunfthaltestelle);
+        fahrt.put("StartzeitFahrtUmstieg", umsteigenStartzeitFahrt);
+        fahrt.put("EndzeitFahrt", endzeitFahrt);
+        fahrt.put("AnkunftszeitZiel", ankunftszeitZiel);
+        fahrt.put("Umfrageantwort-Frage1", umfrageAntwort1);
+        fahrt.put("Umfrageantwort-Frage2", umfrageAntwort2);
+        fahrt.put("Umfrageantwort-Frage3", umfrageAntwort3);
+        fahrt.put("Umfrageantwort-Frage4", umfrageAntwort4);
+        fahrt.put("Umfrageantwort-Frage5", umfrageAntwort5);
+        fahrt.put("Umfrageantwort-Frage6", umfrageAntwort6);
+        fahrt.put("Umfrageantwort-Frage7", umfrageAntwort7);
+        fahrt.put("BeschreibungProblem", beschreibungProblem);
 
         //Dokument speichern
         db.collection("fahrten").document(id).set(fahrt).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -76,14 +89,13 @@ public class FirebaseHelper {
 
         String pathString = "";
 
-
         if (whichPhoto.equals("einstieg")){
 
             pathString = "Fahrtaufnahmen/" + id + "/" + id + "-Einstieg";
 
 
         } else if (whichPhoto.equals("problem")) {
-            pathString = id + "/" + id + "-Problem";
+            pathString = "Fahrtaufnahmen/" + id + "/" + id + "-Problem";
 
         } else if (whichPhoto.equals("ausstieg")) {
             pathString = id + "/" + id + "-Ausstieg";
