@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -145,9 +149,18 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseHelper firebaseHelper = new FirebaseHelper();
 
-        firebaseHelper.dokumentInFirestoreSpeichern("wert1", "wert2", "wert3", "wert4");
+        //Dokument und Photo Id
+        String idNeu = UUID.randomUUID().toString();
 
-        Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_LONG).show();
+        //Daten hochladen
+        firebaseHelper.dokumenteInFirebaseSpeichern("wert1", "wert2", "wert3", "wert4", "testdokument");
+
+
+        Bitmap bitmap = ((BitmapDrawable) gameification.getDrawable()).getBitmap();
+
+
+        //Photos hochladen
+        firebaseHelper.bildInFirebaseStorageSpeichern(bitmap, "einstieg", idNeu);
 
     }
 
