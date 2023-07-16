@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -177,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Daten hochladen
-        firebaseHelper.dokumenteInFirebaseSpeichern("wert1", "wert2", "wert3", "wert4",
+        firebaseHelper.fahrtInFirebaseSpeichern("wert1", "wert2", "wert3", "wert4",
                 "wert5", "wert6", "wert7", "wert8", "wert9",
                 "wert10", "wert11", "wert12", "wert13", "wert14", "wert15",
                 "wert16", idNeu);
