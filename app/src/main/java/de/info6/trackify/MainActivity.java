@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     boolean aktiveFahrt, aktiveFahrtHaltestelle;
 
+    String userId;
+
     //Firebase Nutzer
     private FirebaseAuth mAuth;
 
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         if(intentStart != null){
             aktiveFahrt = intentStart.getBooleanExtra("aktiveFahrt", false);
             aktiveFahrtHaltestelle = intentStart.getBooleanExtra("aktiveFahrtHaltestelle", false);
+            userId = intentStart.getStringExtra("userId");
 
             //Die folgenden drei Zeilen sind nötig für das Problem Foto
             byte[] byteArray = getIntent().getByteArrayExtra("photoProblem");
@@ -200,32 +203,11 @@ public class MainActivity extends AppCompatActivity {
         firebaseHelper.fahrtInFirebaseSpeichern("wert1", "wert2", "wert3", "wert4",
                 "wert5", "wert6", "wert7", "wert8", "wert9",
                 "wert10", "wert11", "wert12", "wert13", "wert14", "wert15",
-                "wert16", idNeu);
+                "wert16", userId, idNeu);
 
 
         //Photos hochladen
         firebaseHelper.bildInFirebaseStorageSpeichern(photoProblem, "problem", idNeu);
-
-        /*
-        Startzeit
-        Gewünschte Ankunftzeit
-
-        Ankunft Haltestelle
-        Startzeit Fahrt
-
-        Beschreibung Problem
-        Foto Problem
-
-        Umsteigen Ankunft Haltestelle
-        Umsteigen Startzeit Fahrt
-
-        Endzeit Fahrt
-        Ankunft Ziel
-
-        Umfrage Antworten
-
-
-         */
 
     }
 

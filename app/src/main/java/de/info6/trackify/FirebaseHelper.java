@@ -40,6 +40,7 @@ public class FirebaseHelper {
     public static final String feldUmfrageantwortFrage6         = "Umfrageantwort-Frage6";
     public static final String feldUmfrageantwortFrage7         = "Umfrageantwort-Frage7";
     public static final String feldBeschreibungProblem          = "BeschreibungProblem";
+    public static final String feldUserId                       = "UserId";
 
 
     //Name der Felder im Firestoredokument fürs Profil
@@ -54,7 +55,7 @@ public class FirebaseHelper {
     public void fahrtInFirebaseSpeichern(String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle, String startzeitFahrt,
                                          String beschreibungProblem, String umsteigenAnkunfthaltestelle, String umsteigenStartzeitFahrt, String endzeitFahrt,
                                          String ankunftszeitZiel, String umfrageAntwort1, String umfrageAntwort2, String umfrageAntwort3,
-                                         String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String id) {
+                                         String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String userId, String id) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -76,6 +77,7 @@ public class FirebaseHelper {
         fahrt.put(feldUmfrageantwortFrage6, umfrageAntwort6);
         fahrt.put(feldUmfrageantwortFrage7, umfrageAntwort7);
         fahrt.put(feldBeschreibungProblem, beschreibungProblem);
+        fahrt.put(feldUserId, userId);
 
         //Dokument speichern
         db.collection("fahrten").document(id).set(fahrt).addOnSuccessListener(new OnSuccessListener<Void>() {
