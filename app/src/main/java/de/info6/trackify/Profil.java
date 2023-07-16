@@ -30,6 +30,8 @@ import java.util.UUID;
 
 public class Profil extends AppCompatActivity {
 
+    String userIdIntent;
+
     TextView editText_alter, editText_derzeitigeBeschaeftigung, editText_name, editText_einkommen;
 
     Spinner dropdown_geschlecht;
@@ -106,6 +108,7 @@ public class Profil extends AppCompatActivity {
                 if (!name.isEmpty()){
                     save();
                     Intent intent = new Intent(Profil.this, MainActivity.class);
+                    intent.putExtra("userId", userIdIntent);
                     startActivity(intent);
                 } else {
                     Toast.makeText(Profil.this,  "Bitte geben Sie ihren Vor- und Nachnamen an.", Toast.LENGTH_LONG).show();
@@ -228,6 +231,8 @@ public class Profil extends AppCompatActivity {
         FirebaseHelper firebaseHelper = new FirebaseHelper();
 
         String id = UUID.randomUUID().toString();
+
+        userIdIntent = id;
 
         saveUserIdInFile(id);
 
