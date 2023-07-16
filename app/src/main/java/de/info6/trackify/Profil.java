@@ -1,5 +1,6 @@
 package de.info6.trackify;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -15,6 +16,12 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,11 +46,24 @@ public class Profil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
 
+        //Intent abrufen
+        Intent intentStart = getIntent();
+
+        boolean firstStart = false;
+
+        if(intentStart != null){
+            firstStart = intentStart.getBooleanExtra("firstStart", false);
+        }
+
+
         //Toolbar initialisieren
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.app_name);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Nur Zurück bei Toolbar, wenn nicht das erste Mal nach installation app geöffnet
+        if (!firstStart) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         //EditText initialisieren
         editText_alter = findViewById(R.id.editText_alter);
@@ -107,6 +127,7 @@ public class Profil extends AppCompatActivity {
         String userId = getUserIdFromFile();
 
         if (userId != null) {
+            /*
             String[] userData = firebaseHelper.getUserDataFromFirebase(userId);
 
             editText_name.setText(userData[0]);
@@ -135,6 +156,66 @@ public class Profil extends AppCompatActivity {
                     break;
             }
 
+             */
+
+            String[] userData = new String[5];
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            DocumentReference documentReference = db.collection("users").document(userId);
+
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+
+                        if (documentSnapshot.exists()) {
+                            Log.d("Firebase", "DocumentSnapshot data: " + documentSnapshot.getData());
+
+                            String nameIntern = String.valueOf(documentSnapshot.get(FirebaseHelper.feldName));
+                            String alterIntern = String.valueOf(documentSnapshot.get(FirebaseHelper.feldAlter));
+                            String beschaeftigungIntern = String.valueOf(documentSnapshot.get(FirebaseHelper.feldBeschaeftigung));
+                            String geschlechtIntern = String.valueOf(documentSnapshot.get(FirebaseHelper.feldGeschlecht));
+                            String einkommenIntern = String.valueOf(documentSnapshot.get(FirebaseHelper.feldEinkommen));
+
+                            editText_name.setText(nameIntern);
+                            editText_alter.setText(alterIntern);
+                            editText_derzeitigeBeschaeftigung.setText(beschaeftigungIntern);
+                            editText_einkommen.setText(einkommenIntern);
+
+                            switch (geschlechtIntern){
+                                case "Bitte auswählen":
+                                    dropdown_geschlecht.setSelection(0);
+                                    break;
+                                case "Männlich":
+                                    dropdown_geschlecht.setSelection(1);
+                                    break;
+                                case "Weiblich":
+                                    dropdown_geschlecht.setSelection(2);
+                                    break;
+                                case "Divers":
+                                    dropdown_geschlecht.setSelection(3);
+                                    break;
+                                case "Keine Angabe":
+                                    dropdown_geschlecht.setSelection(4);
+                                    break;
+                                default:
+                                    dropdown_geschlecht.setSelection(0);
+                                    break;
+                            }
+
+
+                        } else {
+                            Log.d("Firebase", "No such document");
+                        }
+                    }
+                }
+            });
+
+
+
+
         }
 
 
@@ -155,7 +236,7 @@ public class Profil extends AppCompatActivity {
     }
 
 
-    private String getUserIdFromFile(){
+    public String getUserIdFromFile(){
 
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         File directory = cw.getDir("profileDir", Context.MODE_PRIVATE);
@@ -184,13 +265,22 @@ public class Profil extends AppCompatActivity {
 
             return null;
 
-
     }
 
     private void saveUserIdInFile(String id){
 
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         File directory = cw.getDir("profileDir", Context.MODE_PRIVATE);
+
+        //Delete existing User Profile File
+        String previousFile = getUserIdFromFile();
+        if (previousFile != null){
+            previousFile = previousFile + ".txt";
+
+            File file = new File(directory, previousFile);
+            boolean deleted = file.delete();
+        }
+
         File file = new File(directory, id + ".txt");
         Log.d("path", file.toString());
         FileOutputStream fos = null;

@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -54,12 +56,31 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this,  " Login succesfull", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(MainActivity.this,  " Login succesfull", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(MainActivity.this,  " Login failed", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
+
+
+        //Überprüfung, ob die App zum ersten Mal gestartet wurde
+        final String PREFS_NAME = "MyPrefsFile";
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        if (settings.getBoolean("firstTimeOpened", true)) {
+            //the app is being launched for first time, do something
+            Log.d("Comments", "First time");
+
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean("firstTimeOpened", false).commit();
+
+            Intent intent = new Intent(MainActivity.this, Profil.class);
+            intent.putExtra("firstStart", true);
+            startActivity(intent);
+
+        }
 
         //Intent abrufen
         Intent intentStart = getIntent();
