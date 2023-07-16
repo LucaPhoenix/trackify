@@ -191,7 +191,7 @@ public class FirebaseHelper {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        DocumentReference documentReference = db.collection("users").document("6c94b3fb-44c7-43e0-b830-1dfb2f58ba80");
+        DocumentReference documentReference = db.collection("users").document(userId);
 
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

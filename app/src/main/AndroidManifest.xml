@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Trackify">
         <activity
             android:name=".Profil"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".Umfrage"
             android:exported="true" />
