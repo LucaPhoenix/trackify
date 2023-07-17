@@ -52,7 +52,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_ankunftHaltestelle2" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_ankunftHaltestelle" />
 
     <TextView
         android:id="@+id/textView_startzeitFahrt"
@@ -68,6 +68,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_HaltestelleName" />
+
+    <TextView
+        android:id="@+id/textView_verkehrsmittel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="24dp"
+        android:text="Verkehrsmittel"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_startzeitFahrt" />
 
     <Button
         android:id="@+id/button_startzeitFahrt"
@@ -97,8 +112,13 @@
         android:id="@+id/editText_ankunftHaltestelle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:text="@string/text_zeitWaehlen"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_ankunftHaltestelle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_ankunftHaltestelle2" />
 
@@ -122,8 +142,25 @@
         android:id="@+id/editText_startzeitFahrt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:text="@string/text_zeitWaehlen"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_startzeitFahrt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_startzeitFahrt" />
+
+    <Spinner
+        android:id="@+id/spinner_verkehrsmittel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_verkehrsmittel" />
 </androidx.constraintlayout.widget.ConstraintLayout>
