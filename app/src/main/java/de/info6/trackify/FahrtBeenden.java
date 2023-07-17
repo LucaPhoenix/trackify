@@ -72,7 +72,7 @@ public class FahrtBeenden extends AppCompatActivity implements OpenTimePicker{
             @SuppressLint("MissingPermission")
             @Override
             public void onGranted() {
-                Toast.makeText(FahrtBeenden.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(FahrtBeenden.this, "Permission Granted", Toast.LENGTH_SHORT).show();
 
                 //Location Manager Instanz
                 LocationManager locationManager = (LocationManager)
@@ -114,8 +114,8 @@ public class FahrtBeenden extends AppCompatActivity implements OpenTimePicker{
                     }
 
                     collectedData.put("Ankunft Haltestelle Ziel", editText_endzeitFahrt.getText().toString());
-                    collectedData.put("Haltestellenname Ziel", editText_ankunftZiel.getText().toString());
-                    collectedData.put("Ankunftszeit Ziel", editText_haltestelleZiel.getText().toString());
+                    collectedData.put("Ankunftszeit Ziel", editText_ankunftZiel.getText().toString());
+                    collectedData.put("Haltestellenname Ziel", editText_haltestelleZiel.getText().toString());
                     collectedData.put("KoordinatenEnde", lonDouble + ", " + latDouble);
                     Intent intent = new Intent(FahrtBeenden.this, Umfrage.class);
                     intent.putExtra("exportTrue", exportTrue);
