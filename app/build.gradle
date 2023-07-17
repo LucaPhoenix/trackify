@@ -45,6 +45,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.1.0')
     implementation 'com.google.firebase:firebase-auth'
 
+    //Permission Handler
+    implementation 'com.nabinbhandari.android:permissions:3.8+'
+
     // This library is used for crop image feature
 
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'

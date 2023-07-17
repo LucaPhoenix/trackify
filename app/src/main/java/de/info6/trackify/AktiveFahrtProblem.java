@@ -8,12 +8,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +27,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nabinbhandari.android.permissions.PermissionHandler;
+import com.nabinbhandari.android.permissions.Permissions;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
@@ -37,6 +43,8 @@ public class AktiveFahrtProblem extends AppCompatActivity {
     private static final int IMAGE_PICKCAMERA_REQUEST = 400;
     String cameraPermission[];
     String storagePermission[];
+
+    double latDouble, lonDouble;
 
 
     TextView editText_problemBeschreibung;
@@ -86,6 +94,36 @@ public class AktiveFahrtProblem extends AppCompatActivity {
                 doSomething();
             }
         });
+
+        Permissions.check(this, Manifest.permission.ACCESS_FINE_LOCATION, null, new PermissionHandler() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onGranted() {
+                Toast.makeText(AktiveFahrtProblem.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+
+                //Location Manager Instanz
+                LocationManager locationManager = (LocationManager)
+                        getSystemService(Context.LOCATION_SERVICE);
+
+                LocationListener locationListener = new MyLocationListener();
+
+
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10, locationListener);
+
+                latDouble = MyLocationListener.latitude;
+                lonDouble = MyLocationListener.longitude;
+
+            }
+
+
+        });
+
+
+        double latDouble = MyLocationListener.latitude;
+        double lonDouble = MyLocationListener.longitude;
+
+
+
 
 
     }
