@@ -3,18 +3,11 @@ package de.info6.trackify;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.TimePicker;
-
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePicker {
 

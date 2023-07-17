@@ -18,11 +18,12 @@ public interface OpenTimePicker {
      * @param random
      */
     static void openTimePickerDialog(Context context, TextView random){
-        final String[] times = new String[1];
+        final
         TimePickerDialog timePickerDialog = new TimePickerDialog(context, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+            final Calendar calendar = Calendar.getInstance();
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                String hours, minutes;
+                String hours, minutes, time;
                 if(hour<10){
                     hours = "0" + String.valueOf(hour);
                 }
@@ -35,11 +36,10 @@ public interface OpenTimePicker {
                 else {
                     minutes = String.valueOf(minute);
                 }
-                times[0] = hours + ":" + minutes;
-                random.setText(times[0]);
+                time = hours + ":" + minutes;
+                random.setText(time);
             }
-        }, Calendar.HOUR_OF_DAY, Calendar.MINUTE, true);
+        }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
         timePickerDialog.show();
-        timePickerDialog.updateTime(Calendar.HOUR_OF_DAY, Calendar.MINUTE);
     }
 }
