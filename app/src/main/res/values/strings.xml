@@ -3,7 +3,7 @@
 
     <!--Main Activity-->
     <string name="button_neueFahrt">Neue Fahrt beginnen</string>
-    <string name="button_bisherigeFahrten">Fahrten nachträglich exportieren</string>
+    <string name="button_bisherigeFahrten">Bisherige Fahrten</string>
     <string name="button_timePicker">Zeit auswählen</string>
     <string name="text_zeitWaehlen">Bitte wähle eine Zeit</string>
 
