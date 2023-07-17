@@ -3,18 +3,24 @@ package de.info6.trackify;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
-public class NeueFahrtStartzeit extends AppCompatActivity {
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
+public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePicker {
 
     TextView editText_startzeit, editText_gewuenschteAnkunftszeit;
 
-    Button button_speichernStartzeit;
-
+    Button button_speichernStartzeit, button_startzeit, button_gewuenschteAnkunftszeit;
 
 
     @Override
@@ -28,11 +34,13 @@ public class NeueFahrtStartzeit extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //EditText & Button initialisieren
+        //TextClock & Button initialisieren
         editText_startzeit = findViewById(R.id.editText_startzeit);
         editText_gewuenschteAnkunftszeit = findViewById(R.id.editText_gewuenschteAnkunftszeit);
 
         button_speichernStartzeit = findViewById(R.id.button_speichernStartzeit);
+        button_startzeit = findViewById(R.id.button_startzeit);
+        button_gewuenschteAnkunftszeit = findViewById(R.id.button_gewuenschteAnkunftszeit);
 
 
         button_speichernStartzeit.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +52,18 @@ public class NeueFahrtStartzeit extends AppCompatActivity {
             }
         });
 
+        button_startzeit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenTimePicker.openTimePickerDialog(NeueFahrtStartzeit.this, editText_startzeit);
+            }
+        });
 
+        button_gewuenschteAnkunftszeit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenTimePicker.openTimePickerDialog(NeueFahrtStartzeit.this, editText_gewuenschteAnkunftszeit);
+            }
+        });
     }
 }

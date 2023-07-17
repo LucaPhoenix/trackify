@@ -16,45 +16,82 @@
 
     <TextView
         android:id="@+id/textView_startzeit"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="56dp"
-        android:text="Startzeit?"
-        android:textSize="16sp"
+        android:layout_marginEnd="24dp"
+        android:text="Startzeit"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2" />
 
-    <EditText
+    <Button
+        android:id="@+id/button_startzeit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/button_timePicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText_startzeit"
+        app:layout_constraintTop_toBottomOf="@+id/textView_startzeit" />
+
+    <Button
+        android:id="@+id/button_gewuenschteAnkunftszeit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/button_timePicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText_gewuenschteAnkunftszeit"
+        app:layout_constraintTop_toBottomOf="@+id/textView_gewuenschteAnkunftszeit" />
+
+    <TextView
         android:id="@+id/editText_startzeit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:text="@string/text_zeitWaehlen"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_startzeit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_startzeit" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText_gewuenschteAnkunftszeit"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginStart="36dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:text="@string/text_zeitWaehlen"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_gewuenschteAnkunftszeit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_gewuenschteAnkunftszeit" />
 
     <TextView
         android:id="@+id/textView_gewuenschteAnkunftszeit"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="40dp"
-        android:text="Gewünschte Ankunftszeit?"
-        android:textSize="16sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         android:textStyle="bold"
+        android:text="Gewünschte Ankunftszeit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_startzeit" />
 
@@ -67,4 +104,5 @@
         android:text="Speichern"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
