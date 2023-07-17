@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
         //Buttons initialisieren
         buttonNeueFahrt = findViewById(R.id.button_neueFahrt);
         buttonBisherigeFahrten = findViewById(R.id.button_bisherigeFahrten);
-        buttonExportieren = findViewById(R.id.button_exportieren);
 
         //ImageView initialisieren
         gameification = findViewById(R.id.imageView_gamefication);
@@ -150,13 +149,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-            }
-        });
-
-        buttonExportieren.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                doSomething();
             }
         });
 
