@@ -22,17 +22,20 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonNeueFahrt, buttonBisherigeFahrten, buttonExportieren;
+    Button buttonNeueFahrt, buttonBisherigeFahrten;
 
     ImageView gameification;
 
     ImageButton imageButton_profile;
 
     Bitmap photoProblem;
+
+    HashMap<String, Object> collectedData = new HashMap<>();
 
     boolean aktiveFahrt, aktiveFahrtHaltestelle;
 
@@ -100,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
             if (byteArray != null) {
                 photoProblem = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             }
+            collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
+            if(collectedData != null) {
+                Log.d("----TAG", collectedData.toString());
+            }
         }
 
         //Toolbar initialisieren
@@ -110,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         //Buttons initialisieren
         buttonNeueFahrt = findViewById(R.id.button_neueFahrt);
         buttonBisherigeFahrten = findViewById(R.id.button_bisherigeFahrten);
-        buttonExportieren = findViewById(R.id.button_exportieren);
 
         //ImageView initialisieren
         gameification = findViewById(R.id.imageView_gamefication);
@@ -131,11 +137,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (aktiveFahrt) {
                     Intent intent = new Intent(MainActivity.this, Middleactivity.class);
+                    intent.putExtra("CollectedData", collectedData);
                     startActivity(intent);
                 }
 
                 else if (aktiveFahrtHaltestelle) {
                     Intent intent = new Intent(MainActivity.this, AktiveFahrtHaltestelle.class);
+                    intent.putExtra("CollectedData", collectedData);
                     startActivity(intent);
                 }
 
@@ -149,22 +157,36 @@ public class MainActivity extends AppCompatActivity {
         buttonBisherigeFahrten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (aktiveFahrt) {
+                    Toast.makeText(MainActivity.this, "Die alten Fahrten können momentan nicht angezeigt werden, da gerade eine Fahrt getrackt wird", Toast.LENGTH_LONG).show();
+                }
 
-            }
-        });
+                else if (aktiveFahrtHaltestelle) {
+                    Toast.makeText(MainActivity.this, "Die alten Fahrten können momentan nicht angezeigt werden, da gerade eine Fahrt getrackt wird", Toast.LENGTH_LONG).show();
+                }
 
-        buttonExportieren.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                doSomething();
+                else {
+/*                    Intent intent = new Intent(MainActivity.this, Profil.class);
+                    startActivity(intent);*/
+                }
             }
         });
 
         imageButton_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Profil.class);
-                startActivity(intent);
+                if (aktiveFahrt) {
+                    Toast.makeText(MainActivity.this, "Das Profil kann nicht geöffnet werden, da gerade eine Fahrt getrackt wird", Toast.LENGTH_LONG).show();
+                }
+
+                else if (aktiveFahrtHaltestelle) {
+                    Toast.makeText(MainActivity.this, "Das Profil kann nicht geöffnet werden, da gerade eine Fahrt getrackt wird", Toast.LENGTH_LONG).show();
+                }
+
+                else {
+                    Intent intent = new Intent(MainActivity.this, Profil.class);
+                    startActivity(intent);
+                }
             }
         });
 
