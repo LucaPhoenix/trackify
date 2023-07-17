@@ -28,6 +28,12 @@ public class FirebaseHelper {
     public static final String feldGewuenschteAnkunftszeit      = "GewuenschteAnkunftszeit";
     public static final String feldAnkunftHaltestelle           = "AnkunftHaltestelle";
     public static final String feldStartzeitFahrt               = "StartzeitFahrt";
+
+    public static final String feldVerkehrsmittelStartzeit      = "StartzeitVerkehrsmittel";
+
+    public static final String feldAussteigenHaltestelleUmsteigen = "HaltestelleAusstiegUmstieg";
+
+    public static final String feldVerkehrsmittelUmstieg        = "VerkehrsmittelUmstieg";
     public static final String feldAnkunftHaltestelleUmstieg    = "AnkunftHaltestelleUmstieg";
     public static final String feldStartzeitFahrtUmstieg        = "StartzeitFahrtUmstieg";
     public static final String feldEndzeitFahrt                 = "EndzeitFahrt";
@@ -42,6 +48,8 @@ public class FirebaseHelper {
     public static final String feldBeschreibungProblem          = "BeschreibungProblem";
     public static final String feldUserId                       = "UserId";
 
+    public static final String feldDatum                        = "Datum";
+
 
     //Name der Felder im Firestoredokument fürs Profil
     public static final String feldName = "Name";
@@ -53,9 +61,10 @@ public class FirebaseHelper {
 
 
     public void fahrtInFirebaseSpeichern(String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle, String startzeitFahrt,
+                                         String startZeitVerkehrsmittel, String ausstiegHaltestelleUmstieg, String verkehrsmittelUmstieg,
                                          String beschreibungProblem, String umsteigenAnkunfthaltestelle, String umsteigenStartzeitFahrt, String endzeitFahrt,
                                          String ankunftszeitZiel, String umfrageAntwort1, String umfrageAntwort2, String umfrageAntwort3,
-                                         String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String userId, String id) {
+                                         String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String datum, String userId, String id) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -77,6 +86,10 @@ public class FirebaseHelper {
         fahrt.put(feldUmfrageantwortFrage6, umfrageAntwort6);
         fahrt.put(feldUmfrageantwortFrage7, umfrageAntwort7);
         fahrt.put(feldBeschreibungProblem, beschreibungProblem);
+        fahrt.put(feldVerkehrsmittelStartzeit, startZeitVerkehrsmittel);
+        fahrt.put(feldAussteigenHaltestelleUmsteigen, ausstiegHaltestelleUmstieg);
+        fahrt.put(feldVerkehrsmittelUmstieg, verkehrsmittelUmstieg);
+        fahrt.put(feldDatum, datum);
         fahrt.put(feldUserId, userId);
 
         //Dokument speichern
