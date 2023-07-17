@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
             buttonNeueFahrt.setText("Einsteigen");
         }
 
+        setGameification();
+
 
         //OnClickListener
         buttonNeueFahrt.setOnClickListener(new View.OnClickListener() {
@@ -198,25 +200,6 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseHelper firebaseHelper = new FirebaseHelper();
 
-        /*
-        Startzeit
-        Gewünschte Ankunftzeit
-
-        Ankunft Haltestelle
-        Startzeit Fahrt
-
-        Beschreibung Problem
-        Foto Problem
-
-        Umsteigen Ankunft Haltestelle
-        Umsteigen Startzeit Fahrt
-
-        Endzeit Fahrt
-        Ankunft Ziel
-
-        Umfrage Antworten
-         */
-
         //Dokument und Photo Id
         String idNeu = UUID.randomUUID().toString();
 
@@ -230,6 +213,51 @@ public class MainActivity extends AppCompatActivity {
 
         //Photos hochladen
         firebaseHelper.bildInFirebaseStorageSpeichern(photoProblem, "problem", idNeu);
+
+    }
+
+
+
+    private void setGameification(){
+
+        final String PREFS_NAME = "MyPrefsFile";
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+        int gameificationLvl = settings.getInt("gameification", 0);
+
+        if (gameificationLvl >= 0){
+            gameification.setImageDrawable(getDrawable(R.drawable.grass));
+        }
+
+        if (gameificationLvl >= 5){
+            gameification.setImageDrawable(getDrawable(R.drawable.grassundblume));
+        }
+
+        if (gameificationLvl >= 10){
+            gameification.setImageDrawable(getDrawable(R.drawable.grassund2blumen));
+        }
+
+        if (gameificationLvl >= 15){
+            gameification.setImageDrawable(getDrawable(R.drawable.grassund3blumen));
+        }
+
+        if (gameificationLvl >= 20){
+            gameification.setImageDrawable(getDrawable(R.drawable.bildwald));
+        }
+
+        //Diese Zeile kannst du auskommentieren und dann immer kurz zum Profil und wieder zurück gehen, damit du
+        //dir die Gameification anschauen kannst
+        //settings.edit().putInt("gameification", gameificationLvl + 5).commit();
+
+        //Bei der Activity FahrtBeenden können dann folgende Zeilen dafür sorgen, dass das funktioniert:
+        /*
+        final String PREFS_NAME = "MyPrefsFile";
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int gameificationLvl = settings.getInt("gameification", 0);
+        settings.edit().putInt("gameification", gameificationLvl + 1).commit();
+         */
+
 
     }
 
