@@ -14,7 +14,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/ic_launcher_background"
+        android:divider="@drawable/rectanglebg"
+        android:foreground="@drawable/rectanglebg"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/include">
+
+        <TextView
+            android:id="@+id/ueberschriftGamification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="Gameification"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textColor="@color/purple_hka"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include" />
+
+        <ImageView
+            android:id="@+id/imageView_gamefication"
+            android:layout_width="match_parent"
+            android:layout_height="242dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ueberschriftGamification"
+            app:srcCompat="@drawable/bildwald" />
+    </LinearLayout>
+
+    <!--    <TextView
         android:id="@+id/ueberschriftGamification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +85,7 @@
 
     <ImageView
         android:id="@+id/imageView_gamefication"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="242dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
@@ -42,7 +94,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ueberschriftGamification"
-        app:srcCompat="@drawable/bildwald" />
+        app:srcCompat="@drawable/bildwald" />-->
 
     <Button
         android:id="@+id/button_neueFahrt"
@@ -54,7 +106,7 @@
         android:text="@string/button_neueFahrt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_gamefication" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
         android:id="@+id/button_bisherigeFahrten"
