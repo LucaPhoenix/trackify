@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePicker {
 
     TextView editText_startzeit, editText_gewuenschteAnkunftszeit;
@@ -19,6 +23,7 @@ public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HashMap<String, Object> collectedData = new HashMap<>();
         setContentView(R.layout.activity_neue_fahrt_startzeit);
 
         //Toolbar initialisieren
@@ -39,8 +44,11 @@ public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePic
         button_speichernStartzeit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                collectedData.put("Startzeit", editText_startzeit.getText().toString());
+                collectedData.put("Gewünschte Ankunftszeit", editText_gewuenschteAnkunftszeit.getText().toString());
                 Intent intent = new Intent(NeueFahrtStartzeit.this, MainActivity.class);
                 intent.putExtra("aktiveFahrtHaltestelle", true);
+                intent.putExtra("CollectedData", collectedData);
                 startActivity(intent);
             }
         });
