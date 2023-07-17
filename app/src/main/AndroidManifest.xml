@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trackify">
         <activity
+            android:name=".Umsteigen"
+            android:exported="false" />
+        <activity
             android:name=".Profil"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Umfrage"
             android:exported="true" />
@@ -37,11 +40,11 @@
         <activity
             android:name=".BisherigeFahrtenLuca"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DevActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
