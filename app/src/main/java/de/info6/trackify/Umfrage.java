@@ -307,8 +307,8 @@ public class Umfrage extends AppCompatActivity {
                 collectedData.get("Problem Zeit").toString(),
                 collectedData.get("KoordinatenProblem").toString(),
                 collectedData.get("Ankunft Haltestelle Ziel").toString(),
-                collectedData.get("Ankunftszeit Ziel").toString(), //hat buchstaben
-                collectedData.get("Ankunft Haltestelle").toString(), // hat Zahl
+                collectedData.get("Ankunftszeit Ziel").toString(),
+                collectedData.get("Ankunft Haltestelle Ziel").toString(),
                 collectedData.get("KoordinatenEnde").toString(),
                 collectedData.get("Antwort1").toString(),
                 collectedData.get("Antwort2").toString(),
@@ -317,7 +317,7 @@ public class Umfrage extends AppCompatActivity {
                 collectedData.get("Antwort5").toString(),
                 collectedData.get("Antwort6").toString(),
                 collectedData.get("Antwort7").toString(),
-                dtf.format(now));
+                dtf.format(now)), getUserIdFromFile();
     }
     private void saveDataInFirebase(Bitmap photoProblem, String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle,
                                     String startzeitFahrt, String gpsKoordinatenStartzeit, String startZeitVerkehrsmittel, String haltestelleStartzeit,
