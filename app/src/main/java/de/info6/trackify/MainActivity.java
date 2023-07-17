@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
+        collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
 
         //Intent abrufen
         Intent intentStart = getIntent();
@@ -104,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
             byte[] byteArray = getIntent().getByteArrayExtra("photoProblem");
             if (byteArray != null) {
                 photoProblem = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                collectedData.put("bitmapPhoto", photoProblem);
             }
-            collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
             if(collectedData != null) {
                 Log.d("----TAG", collectedData.toString());
             }
