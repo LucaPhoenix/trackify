@@ -32,15 +32,11 @@ public class FirebaseHelper {
     //Name der Felder im Firestoredokument für Fahrten
     public static final String feldStartzeit                    = "Startzeit";
     public static final String feldGewuenschteAnkunftszeit      = "GewuenschteAnkunftszeit";
-
     public static final String feldStartzeitHaltestelle         = "HaltestelleStartzeit";
     public static final String feldAnkunftHaltestelle           = "AnkunftHaltestelle";
     public static final String feldStartzeitFahrt               = "StartzeitFahrt";
-
     public static final String feldVerkehrsmittelStartzeit      = "StartzeitVerkehrsmittel";
-
     public static final String feldAussteigenHaltestelleUmsteigen = "HaltestelleAusstiegUmstieg";
-
     public static final String feldVerkehrsmittelUmstieg        = "VerkehrsmittelUmstieg";
     public static final String feldAnkunftHaltestelleUmstieg    = "AnkunftHaltestelleUmstieg";
     public static final String feldStartzeitFahrtUmstieg        = "StartzeitFahrtUmstieg";
@@ -55,9 +51,7 @@ public class FirebaseHelper {
     public static final String feldUmfrageantwortFrage7         = "Umfrageantwort-Frage7";
     public static final String feldBeschreibungProblem          = "BeschreibungProblem";
     public static final String feldUserId                       = "UserId";
-
     public static final String feldUserIdFirebase               = "FirebaseUserId";
-
     public static final String feldDatum                        = "Datum";
 
 
@@ -116,6 +110,7 @@ public class FirebaseHelper {
         fahrt.put(feldVerkehrsmittelUmstieg, verkehrsmittelUmstieg);
         fahrt.put(feldDatum, datum);
         fahrt.put(feldUserId, userId);
+        fahrt.put(haltestelleStartzeit, haltestelleStartzeit);
         fahrt.put(feldUserIdFirebase, uid);
 
         //Dokument speichern
