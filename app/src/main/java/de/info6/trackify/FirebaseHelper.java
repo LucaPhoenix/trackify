@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,6 +24,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,6 +71,7 @@ public class FirebaseHelper {
     public static final String feldGeschlecht = "Geschlecht";
     public static final String feldEinkommen = "Einkommen";
 
+
     String uid;
 
 
@@ -94,6 +97,7 @@ public class FirebaseHelper {
         if (currentUser != null) {
             uid = currentUser.getUid();
         }
+
 
         //Dokument erstellen
         Map<String, Object> fahrt = new HashMap<>();
@@ -127,7 +131,6 @@ public class FirebaseHelper {
         fahrt.put(feldgpsKoordinatenProblemString, gpsKoordinatenProblemString);
         fahrt.put(feldankunftHaltestelleZiel, ankunftHaltestelleZiel);
         fahrt.put(feldgpsKoordinatenZiel, gpsKoordinatenZiel);
-
 
         //Dokument speichern
         db.collection("fahrten").document(id).set(fahrt).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -278,5 +281,4 @@ public class FirebaseHelper {
         return userData;
 
     }
-
 }

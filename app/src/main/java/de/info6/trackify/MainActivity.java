@@ -22,6 +22,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -35,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     Bitmap photoProblem;
 
-    HashMap<String, Object> collectedData = new HashMap<>();
 
+    HashMap<String, Object> collectedData = new HashMap<>();
     boolean aktiveFahrt, aktiveFahrtHaltestelle;
 
     String userId;
@@ -44,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
     //Firebase Nutzer
     private FirebaseAuth mAuth;
 
-    int zaehler = 0;
 
+    int zaehler = 0;
+  
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
-        collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
 
+        collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
         //Intent abrufen
         Intent intentStart = getIntent();
 
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         imageButton_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (aktiveFahrt) {
                     Toast.makeText(MainActivity.this, "Das Profil kann nicht geöffnet werden, da gerade eine Fahrt getrackt wird", Toast.LENGTH_LONG).show();
                 }
@@ -290,6 +294,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 }

@@ -1,5 +1,6 @@
 package de.info6.trackify;
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -25,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
@@ -45,8 +48,8 @@ public class AktiveFahrtProblem extends AppCompatActivity {
     String cameraPermission[];
     String storagePermission[];
 
-    double latDouble, lonDouble;
 
+    double latDouble, lonDouble;
 
     TextView editText_problemBeschreibung;
 
@@ -56,13 +59,14 @@ public class AktiveFahrtProblem extends AppCompatActivity {
 
     Bitmap bitmapProblem;
 
+
     HashMap<String, Object> collectedData = new HashMap<>();
     HashMap<String, String> problemBeschreibung = new HashMap<>();
     HashMap<String, String> problemZeit = new HashMap<>();
     HashMap<String, String> problemKoordinaten = new HashMap<>();
     int problemCounter;
-
-
+  
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +84,7 @@ public class AktiveFahrtProblem extends AppCompatActivity {
 
         //ImageView initialisieren
         imageView_Problem = findViewById(R.id.imageView_Problem);
+
 
         //Intent abrufen
         Intent intentStart = getIntent();
@@ -216,8 +221,7 @@ public class AktiveFahrtProblem extends AppCompatActivity {
     //Von Gallerie auswählen
     private void pickFromGallery() {
         CropImage.activity().start(AktiveFahrtProblem.this);
-    }
-
+    
     //Nach auswahl Bild darstellen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -264,6 +268,5 @@ public class AktiveFahrtProblem extends AppCompatActivity {
         boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result && result1;
     }
-
 
 }

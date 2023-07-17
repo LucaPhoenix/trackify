@@ -62,6 +62,15 @@ public class Middleactivity extends AppCompatActivity {
             }
         });
 
+        button_umsteigen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Middleactivity.this, MainActivity.class);
+                intent.putExtra("aktiveFahrtHaltestelle", true);
+                startActivity(intent);
+            }
+        });
+
         button_fahrtBeenden.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
