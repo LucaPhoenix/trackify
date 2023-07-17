@@ -113,9 +113,9 @@ public class FahrtBeenden extends AppCompatActivity implements OpenTimePicker{
                         exportTrue = true;
                     }
 
-                    collectedData.put("Ankunft Haltestelle", editText_endzeitFahrt.getText().toString());
-                    collectedData.put("Haltestellenname", editText_ankunftZiel.getText().toString());
-                    collectedData.put("Startzeit Fahrt", editText_haltestelleZiel.getText().toString());
+                    collectedData.put("Ankunft Haltestelle Ziel", editText_endzeitFahrt.getText().toString());
+                    collectedData.put("Haltestellenname Ziel", editText_ankunftZiel.getText().toString());
+                    collectedData.put("Ankunftszeit Ziel", editText_haltestelleZiel.getText().toString());
                     collectedData.put("KoordinatenEnde", lonDouble + ", " + latDouble);
                     Intent intent = new Intent(FahrtBeenden.this, Umfrage.class);
                     intent.putExtra("exportTrue", exportTrue);
