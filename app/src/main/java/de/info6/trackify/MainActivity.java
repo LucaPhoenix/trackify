@@ -172,8 +172,6 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     Intent intent = new Intent(MainActivity.this, BisherigeFahrtenLuca.class);
                     startActivity(intent);
-/*                    Intent intent = new Intent(MainActivity.this, Profil.class);
-                    startActivity(intent);*/
                 }
             }
         });
@@ -236,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
                 "wert5", "wert6", "wert7", "wert8", "wert9",
                 "wert10", "wert11", "wert12", "wert13", "wert14", "wert15",
                 "wert16", "wert16", "wert16", "wert16", "wert16", "wert16", userId, idNeu);
-
 
 
         if (photoProblem != null) {

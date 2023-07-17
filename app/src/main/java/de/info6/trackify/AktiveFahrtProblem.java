@@ -79,11 +79,15 @@ public class AktiveFahrtProblem extends AppCompatActivity {
                 Intent intent = new Intent(AktiveFahrtProblem.this, MainActivity.class);
                 intent.putExtra("aktiveFahrt", true);
 
-                //Bitmap to Byte
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmapProblem.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
-                intent.putExtra("photoProblem", byteArray);
+
+                if (bitmapProblem != null) {
+                    //Bitmap to Byte
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmapProblem.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    byte[] byteArray = stream.toByteArray();
+                    intent.putExtra("photoProblem", byteArray);
+                }
+
                 startActivity(intent);
             }
         });
