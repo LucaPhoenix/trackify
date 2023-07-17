@@ -7,22 +7,28 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 
+import java.util.UUID;
+
 public class FahrtBeenden extends AppCompatActivity {
 
     TextView editText_endzeitFahrt, editText_ankunftZiel;
 
     Button button_speichernFahrtBeenden;
+
+    Switch switch_fahrtExportieren;
 
     double latDouble, lonDouble;
 
@@ -42,6 +48,8 @@ public class FahrtBeenden extends AppCompatActivity {
         editText_ankunftZiel = findViewById(R.id.editText_ankunftZiel);
 
         button_speichernFahrtBeenden = findViewById(R.id.button_speichernFahrtBeenden);
+
+        switch_fahrtExportieren = findViewById(R.id.switch_fahrtExportieren);
 
 
         Permissions.check(this, Manifest.permission.ACCESS_FINE_LOCATION, null, new PermissionHandler() {
@@ -77,7 +85,16 @@ public class FahrtBeenden extends AppCompatActivity {
         button_speichernFahrtBeenden.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                boolean exportTrue = false;
+
+                if (switch_fahrtExportieren.isChecked()){
+                    exportTrue = true;
+                }
+
+
                 Intent intent = new Intent(FahrtBeenden.this, Umfrage.class);
+                intent.putExtra("exportTrue", exportTrue);
                 startActivity(intent);
             }
         });

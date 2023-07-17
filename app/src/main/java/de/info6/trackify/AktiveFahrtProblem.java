@@ -103,7 +103,7 @@ public class AktiveFahrtProblem extends AppCompatActivity {
             @SuppressLint("MissingPermission")
             @Override
             public void onGranted() {
-                Toast.makeText(AktiveFahrtProblem.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AktiveFahrtProblem.this, "Permission Granted", Toast.LENGTH_SHORT).show();
 
                 //Location Manager Instanz
                 LocationManager locationManager = (LocationManager)
