@@ -19,6 +19,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +31,8 @@ import com.nabinbhandari.android.permissions.Permissions;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class AktiveFahrtProblem extends AppCompatActivity {
 
@@ -53,6 +56,13 @@ public class AktiveFahrtProblem extends AppCompatActivity {
 
     Bitmap bitmapProblem;
 
+    HashMap<String, Object> collectedData = new HashMap<>();
+    HashMap<String, String> problemBeschreibung = new HashMap<>();
+    HashMap<String, String> problemZeit = new HashMap<>();
+    HashMap<String, String> problemKoordinaten = new HashMap<>();
+    int problemCounter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,22 +81,71 @@ public class AktiveFahrtProblem extends AppCompatActivity {
         //ImageView initialisieren
         imageView_Problem = findViewById(R.id.imageView_Problem);
 
+        //Intent abrufen
+        Intent intentStart = getIntent();
+
+        if(intentStart != null){
+            collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
+            if(collectedData != null) {
+                Log.d("----TAG", collectedData.toString());
+                if(collectedData.containsKey("Problem Beschreibung")){
+                    problemBeschreibung = (HashMap<String, String>) collectedData.get("Problem Beschreibung");
+                    problemZeit = (HashMap<String, String>) collectedData.get("Problem Zeit");
+                    problemKoordinaten = (HashMap<String, String>) collectedData.get("KoordinatenProblem");
+                    problemCounter = problemBeschreibung.size() +1;
+                }
+                else{
+                    problemCounter = 1;
+                }
+            }
+        }
+
         button_speichernProblem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AktiveFahrtProblem.this, MainActivity.class);
-                intent.putExtra("aktiveFahrt", true);
-
-
-                if (bitmapProblem != null) {
-                    //Bitmap to Byte
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmapProblem.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                    byte[] byteArray = stream.toByteArray();
-                    intent.putExtra("photoProblem", byteArray);
+                int hours = Calendar.getInstance().get(Calendar.HOUR_OF_DAY), minutes = Calendar.getInstance().get(Calendar.MINUTE);
+                String hour, minute, time;
+                if(hours<10){
+                    hour = "0" + String.valueOf(hours);
                 }
+                else {
+                    hour = String.valueOf(hours);
+                }
+                if(minutes<10){
+                    minute = "0" + String.valueOf(minutes);
+                }
+                else {
+                    minute = String.valueOf(minutes);
+                }
+                time = hours + ":" + minutes;
+                if(editText_problemBeschreibung.getText().toString().isEmpty()){
+                    Toast.makeText(AktiveFahrtProblem.this,  "Bitte geben Sie eine Problembeschreibung ab.", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(AktiveFahrtProblem.this, MainActivity.class);
+                    intent.putExtra("aktiveFahrt", true);
+                    problemBeschreibung.put("Problem" + problemCounter, editText_problemBeschreibung.getText().toString());
+                    problemZeit.put("Problem" + problemCounter, time);
+                    problemKoordinaten.put("Problem" + problemCounter, lonDouble + ", " + latDouble);
 
-                startActivity(intent);
+/*                    collectedData.put("Problem Beschreibung", editText_ankunftHaltestelle_umsteigen.getText().toString());
+                    collectedData.put("Problem Zeit", time);
+                    collectedData.put("KoordinatenProblem", lonDouble + ", " + latDouble);*/
+
+                    collectedData.put("Problem Beschreibung", problemBeschreibung);
+                    collectedData.put("Problem Zeit", problemZeit);
+                    collectedData.put("KoordinatenProblem", problemKoordinaten);
+
+
+                    if (bitmapProblem != null) {
+                        //Bitmap to Byte
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmapProblem.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] byteArray = stream.toByteArray();
+                        intent.putExtra("photoProblem" + problemCounter, byteArray);
+                    }
+                    intent.putExtra("CollectedData", collectedData);
+                    startActivity(intent);
+                }
             }
         });
 
