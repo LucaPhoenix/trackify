@@ -9,15 +9,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +32,8 @@ public class FirebaseHelper {
     //Name der Felder im Firestoredokument für Fahrten
     public static final String feldStartzeit                    = "Startzeit";
     public static final String feldGewuenschteAnkunftszeit      = "GewuenschteAnkunftszeit";
+
+    public static final String feldStartzeitHaltestelle         = "HaltestelleStartzeit";
     public static final String feldAnkunftHaltestelle           = "AnkunftHaltestelle";
     public static final String feldStartzeitFahrt               = "StartzeitFahrt";
 
@@ -48,6 +56,8 @@ public class FirebaseHelper {
     public static final String feldBeschreibungProblem          = "BeschreibungProblem";
     public static final String feldUserId                       = "UserId";
 
+    public static final String feldUserIdFirebase               = "FirebaseUserId";
+
     public static final String feldDatum                        = "Datum";
 
 
@@ -58,20 +68,35 @@ public class FirebaseHelper {
     public static final String feldGeschlecht = "Geschlecht";
     public static final String feldEinkommen = "Einkommen";
 
+    String uid;
+
 
 
     public void fahrtInFirebaseSpeichern(String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle, String startzeitFahrt,
                                          String startZeitVerkehrsmittel, String ausstiegHaltestelleUmstieg, String verkehrsmittelUmstieg,
+                                         String haltestelleStartzeit,
                                          String beschreibungProblem, String umsteigenAnkunfthaltestelle, String umsteigenStartzeitFahrt, String endzeitFahrt,
                                          String ankunftszeitZiel, String umfrageAntwort1, String umfrageAntwort2, String umfrageAntwort3,
                                          String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String datum, String userId, String id) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+
+        FirebaseAuth mAuth;
+        FirebaseUser currentUser;
+
+        //UserID bekommen
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            uid = currentUser.getUid();
+        }
+
         //Dokument erstellen
         Map<String, Object> fahrt = new HashMap<>();
         fahrt.put(feldStartzeit, startzeit);
         fahrt.put(feldGewuenschteAnkunftszeit, gewuenschteAnkunftszeit);
+        fahrt.put(feldStartzeitHaltestelle, feldStartzeitHaltestelle);
         fahrt.put(feldAnkunftHaltestelle, ankunftHaltestelle);
         fahrt.put(feldStartzeitFahrt, startzeitFahrt);
         fahrt.put(feldAnkunftHaltestelleUmstieg, umsteigenAnkunfthaltestelle);
@@ -91,6 +116,7 @@ public class FirebaseHelper {
         fahrt.put(feldVerkehrsmittelUmstieg, verkehrsmittelUmstieg);
         fahrt.put(feldDatum, datum);
         fahrt.put(feldUserId, userId);
+        fahrt.put(feldUserIdFirebase, uid);
 
         //Dokument speichern
         db.collection("fahrten").document(id).set(fahrt).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -241,6 +267,5 @@ public class FirebaseHelper {
         return userData;
 
     }
-
 
 }
