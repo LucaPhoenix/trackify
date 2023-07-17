@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.type.LatLng;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 
@@ -87,8 +89,7 @@ public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePic
                         && !editText_gewuenschteAnkunftszeit.getText().toString().equals(getResources().getString(R.string.text_zeitWaehlen))){
                     collectedData.put("Startzeit", editText_startzeit.getText().toString());
                     collectedData.put("Gewünschte Ankunftszeit", editText_gewuenschteAnkunftszeit.getText().toString());
-                    collectedData.put("LatitudeStartzeit", latDouble);
-                    collectedData.put("LongitudeStartzeit", lonDouble);
+                    collectedData.put("KoordinatenStartzeit", lonDouble + ", " + latDouble);
                     Intent intent = new Intent(NeueFahrtStartzeit.this, MainActivity.class);
                     intent.putExtra("aktiveFahrtHaltestelle", true);
                     intent.putExtra("CollectedData", collectedData);

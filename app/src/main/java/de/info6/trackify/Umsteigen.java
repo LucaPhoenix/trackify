@@ -30,8 +30,14 @@ public class Umsteigen extends AppCompatActivity implements OpenTimePicker {
     Spinner dropdown_verkehrsmittel_umsteigen;
 
     HashMap<String, Object> collectedData = new HashMap<>();
+    HashMap<String, String> umstiegAnkunftHaltestelle = new HashMap<>();
+    HashMap<String, String> umstiegHaltestellenname = new HashMap<>();
+    HashMap<String, String> umstiegStartzeitFahrt = new HashMap<>();
+    HashMap<String, String> umstiegVerkehrsmittel = new HashMap<>();
+    HashMap<String, String> umstiegKoordinaten = new HashMap<>();
 
     double latDouble, lonDouble;
+    int umstiegsCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,17 @@ public class Umsteigen extends AppCompatActivity implements OpenTimePicker {
             collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
             if(collectedData != null) {
                 Log.d("----TAG", collectedData.toString());
+                if(collectedData.containsKey("Umsteigen Ankunft Haltestelle")){
+                    umstiegAnkunftHaltestelle = (HashMap<String, String>) collectedData.get("Umsteigen Ankunft Haltestelle");
+                    umstiegHaltestellenname = (HashMap<String, String>) collectedData.get("Umsteigen Haltestellenname");
+                    umstiegStartzeitFahrt = (HashMap<String, String>) collectedData.get("Umsteigen Startzeit Fahrt");
+                    umstiegVerkehrsmittel = (HashMap<String, String>) collectedData.get("Umsteigen Verkehrsmittel");
+                    umstiegKoordinaten = (HashMap<String, String>) collectedData.get("KoordinatenUmsteigen");
+                    umstiegsCounter = umstiegAnkunftHaltestelle.size() +1;
+                }
+                else{
+                    umstiegsCounter = 1;
+                }
             }
         }
 
@@ -111,10 +128,23 @@ public class Umsteigen extends AppCompatActivity implements OpenTimePicker {
                 } else if (dropdown_verkehrsmittel_umsteigen.getSelectedItem().toString().equals("Bitte auswählen")) {
                     Toast.makeText(Umsteigen.this,  "Bitte geben Sie ein Verkehrsmittel an an.", Toast.LENGTH_LONG).show();
                 } else{
-                    collectedData.put("Ankunft Haltestelle", editText_ankunftHaltestelle_umsteigen.getText().toString());
-                    collectedData.put("Haltestellenname", editText_haltestellenname_umsteigen.getText().toString());
-                    collectedData.put("Startzeit Fahrt", editText_startzeitFahrt_umsteigen.getText().toString());
-                    collectedData.put("Verkehrsmittel", dropdown_verkehrsmittel_umsteigen.getSelectedItem().toString());
+                    umstiegAnkunftHaltestelle.put("Umsteigen"+umstiegsCounter, editText_ankunftHaltestelle_umsteigen.getText().toString());
+                    umstiegHaltestellenname.put("Umsteigen"+umstiegsCounter, editText_haltestellenname_umsteigen.getText().toString());
+                    umstiegStartzeitFahrt.put("Umsteigen"+umstiegsCounter, editText_startzeitFahrt_umsteigen.getText().toString());
+                    umstiegVerkehrsmittel.put("Umsteigen"+umstiegsCounter, dropdown_verkehrsmittel_umsteigen.getSelectedItem().toString());
+                    umstiegKoordinaten.put("Umsteigen"+umstiegsCounter, lonDouble + ", " + latDouble);
+
+/*                    collectedData.put("Umsteigen Ankunft Haltestelle", editText_ankunftHaltestelle_umsteigen.getText().toString());
+                    collectedData.put("Umsteigen Haltestellenname", editText_haltestellenname_umsteigen.getText().toString());
+                    collectedData.put("Umsteigen Startzeit Fahrt", editText_startzeitFahrt_umsteigen.getText().toString());
+                    collectedData.put("Umsteigen Verkehrsmittel", dropdown_verkehrsmittel_umsteigen.getSelectedItem().toString());
+                    collectedData.put("KoordinatenUmsteigen", lonDouble + ", " + latDouble);*/
+
+                    collectedData.put("Umsteigen Ankunft Haltestelle", umstiegAnkunftHaltestelle);
+                    collectedData.put("Umsteigen Haltestellenname", umstiegHaltestellenname);
+                    collectedData.put("Umsteigen Startzeit Fahrt", umstiegStartzeitFahrt);
+                    collectedData.put("Umsteigen Verkehrsmittel", umstiegVerkehrsmittel);
+                    collectedData.put("KoordinatenUmsteigen", umstiegKoordinaten);
                     Intent intent = new Intent(Umsteigen.this, MainActivity.class);
                     intent.putExtra("aktiveFahrt", true);
                     intent.putExtra("CollectedData", collectedData);

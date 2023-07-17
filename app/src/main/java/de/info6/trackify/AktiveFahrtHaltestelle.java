@@ -117,6 +117,7 @@ public class AktiveFahrtHaltestelle extends AppCompatActivity implements Verkehr
                     collectedData.put("Haltestellenname", editText_haltestellenname.getText().toString());
                     collectedData.put("Startzeit Fahrt", editText_startzeitFahrt.getText().toString());
                     collectedData.put("Verkehrsmittel", dropdown_verkehrsmittel.getSelectedItem().toString());
+                    collectedData.put("KoordinatenEinstieg", lonDouble + ", " + latDouble);
                     Intent intent = new Intent(AktiveFahrtHaltestelle.this, MainActivity.class);
                     intent.putExtra("aktiveFahrt", true);
                     intent.putExtra("CollectedData", collectedData);
