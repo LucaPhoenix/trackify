@@ -164,7 +164,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginBottom="24dp"
         android:checked="true"
-        android:text="Fahrt exportieren?
+        android:text="Fahrt exportieren?"
         app:layout_constraintBottom_toTopOf="@+id/button_speichernFahrtBeenden"
         app:layout_constraintStart_toStartOf="parent" />
 

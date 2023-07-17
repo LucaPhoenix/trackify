@@ -221,7 +221,7 @@ public class AktiveFahrtProblem extends AppCompatActivity {
     //Von Gallerie auswählen
     private void pickFromGallery() {
         CropImage.activity().start(AktiveFahrtProblem.this);
-    
+    }
     //Nach auswahl Bild darstellen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
