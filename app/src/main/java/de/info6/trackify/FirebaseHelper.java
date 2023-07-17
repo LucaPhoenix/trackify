@@ -53,6 +53,13 @@ public class FirebaseHelper {
     public static final String feldUserId                       = "UserId";
     public static final String feldUserIdFirebase               = "FirebaseUserId";
     public static final String feldDatum                        = "Datum";
+    public static final String feldgpsKoordinatenStartzeit      = "GPSKoordinaten-Startzeit";
+    public static final String feldgpsKoordinateEinstieg        = "GPSKoordinaten-Einstieg";
+    public static final String feldgpsKoordinatenUmsteigen      = "GPSKoordinaten-Umsteigen";
+    public static final String feldproblemZeit                  = "Problem-Zeit";
+    public static final String feldgpsKoordinatenProblemString  = "GPSKoordinaten-Problem";
+    public static final String feldankunftHaltestelleZiel       = "Ankunft-Haltestelle-Ziel";
+    public static final String feldgpsKoordinatenZiel           = "GPSKoordinaten-Ziel";
 
 
     //Name der Felder im Firestoredokument fürs Profil
@@ -66,12 +73,14 @@ public class FirebaseHelper {
 
 
 
-    public void fahrtInFirebaseSpeichern(String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle, String startzeitFahrt,
-                                         String startZeitVerkehrsmittel, String ausstiegHaltestelleUmstieg, String verkehrsmittelUmstieg,
-                                         String haltestelleStartzeit,
-                                         String beschreibungProblem, String umsteigenAnkunfthaltestelle, String umsteigenStartzeitFahrt, String endzeitFahrt,
-                                         String ankunftszeitZiel, String umfrageAntwort1, String umfrageAntwort2, String umfrageAntwort3,
-                                         String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String datum, String userId, String id) {
+    public void fahrtInFirebaseSpeichern(String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle,
+                                         String startzeitFahrt, String gpsKoordinatenStartzeit, String startZeitVerkehrsmittel, String haltestelleStartzeit,
+                                         String gpsKoordinateEinstieg, String ausstiegHaltestelleUmstieg, String verkehrsmittelUmstieg,
+                                         String umsteigenAnkunfthaltestelle, String umsteigenStartzeitFahrt, String gpsKoordinatenUmsteigen, String beschreibungProblem,
+                                         String problemZeit, String gpsKoordinatenProblemString, String endzeitFahrt,
+                                         String ankunftszeitZiel, String ankunftHaltestelleZiel, String gpsKoordinatenZiel, String umfrageAntwort1, String umfrageAntwort2, String umfrageAntwort3,
+                                         String umfrageAntwort4, String umfrageAntwort5, String umfrageAntwort6, String umfrageAntwort7, String datum,
+                                         String userId, String id) {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -111,6 +120,14 @@ public class FirebaseHelper {
         fahrt.put(feldDatum, datum);
         fahrt.put(feldUserId, userId);
         fahrt.put(feldUserIdFirebase, uid);
+        fahrt.put(feldgpsKoordinatenStartzeit, gpsKoordinatenStartzeit);
+        fahrt.put(feldgpsKoordinateEinstieg, gpsKoordinateEinstieg);
+        fahrt.put(feldgpsKoordinatenUmsteigen, gpsKoordinatenUmsteigen);
+        fahrt.put(feldproblemZeit, problemZeit);
+        fahrt.put(feldgpsKoordinatenProblemString, gpsKoordinatenProblemString);
+        fahrt.put(feldankunftHaltestelleZiel, ankunftHaltestelleZiel);
+        fahrt.put(feldgpsKoordinatenZiel, gpsKoordinatenZiel);
+
 
         //Dokument speichern
         db.collection("fahrten").document(id).set(fahrt).addOnSuccessListener(new OnSuccessListener<Void>() {

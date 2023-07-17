@@ -229,13 +229,15 @@ public class MainActivity extends AppCompatActivity {
         //Dokument und Photo Id
         String idNeu = UUID.randomUUID().toString();
 
-
+/*
         //Daten hochladen
         firebaseHelper.fahrtInFirebaseSpeichern("wert1", "wert2", "wert3", "wert4",
                 "wert5", "wert6", "wert7", "wert8", "wert9",
                 "wert10", "wert11", "wert12", "wert13", "wert14", "wert15",
                 "wert16", "wert16", "wert16", "wert16", "wert16", "wert16", userId, idNeu);
 
+
+ */
 
         if (photoProblem != null) {
             //Photos hochladen

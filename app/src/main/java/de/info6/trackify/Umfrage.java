@@ -277,6 +277,7 @@ public class Umfrage extends AppCompatActivity {
                     collectedData.put("Antwort5", antwort5);
                     collectedData.put("Antwort6", antwort6);
                     collectedData.put("Antwort7", antwort7);
+                    saveInBetween();
                     Intent intent = new Intent(Umfrage.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -317,7 +318,7 @@ public class Umfrage extends AppCompatActivity {
                 collectedData.get("Antwort5").toString(),
                 collectedData.get("Antwort6").toString(),
                 collectedData.get("Antwort7").toString(),
-                dtf.format(now)), getUserIdFromFile();
+                dtf.format(now), getUserIdFromFile());
     }
     private void saveDataInFirebase(Bitmap photoProblem, String startzeit, String gewuenschteAnkunftszeit, String ankunftHaltestelle,
                                     String startzeitFahrt, String gpsKoordinatenStartzeit, String startZeitVerkehrsmittel, String haltestelleStartzeit,
@@ -333,12 +334,20 @@ public class Umfrage extends AppCompatActivity {
         //Dokument und Photo Id
         String idNeu = UUID.randomUUID().toString();
 
+        //Daten hochladen
+        firebaseHelper.fahrtInFirebaseSpeichern(startzeit, gewuenschteAnkunftszeit, ankunftHaltestelle, startzeitFahrt, gpsKoordinatenStartzeit, startZeitVerkehrsmittel, haltestelleStartzeit,
+                gpsKoordinateEinstieg, ausstiegHaltestelleUmstieg, verkehrsmittelUmstieg, umsteigenAnkunfthaltestelle, umsteigenStartzeitFahrt, gpsKoordinatenUmsteigen,
+                beschreibungProblem, problemZeit, gpsKoordinatenProblemString, endzeitFahrt, ankunftszeitZiel, ankunftHaltestelleZiel, gpsKoordinatenZiel, umfrageAntwort1, umfrageAntwort2,
+                umfrageAntwort3, umfrageAntwort4, umfrageAntwort5, umfrageAntwort6, umfrageAntwort7, datum, userId, idNeu);
 
+        /*
         //Daten hochladen
         firebaseHelper.fahrtInFirebaseSpeichern(startzeit, gewuenschteAnkunftszeit, ankunftHaltestelle, startzeitFahrt,
                 startZeitVerkehrsmittel, ausstiegHaltestelleUmstieg, verkehrsmittelUmstieg, haltestelleStartzeit, beschreibungProblem,
                 umsteigenAnkunfthaltestelle, umsteigenStartzeitFahrt, endzeitFahrt, ankunftszeitZiel, umfrageAntwort1, umfrageAntwort2,
                 umfrageAntwort3, umfrageAntwort4, umfrageAntwort5, umfrageAntwort6, umfrageAntwort7, datum, userId, idNeu);
+
+         */
 
 
         if (photoProblem != null) {

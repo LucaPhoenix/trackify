@@ -82,11 +82,12 @@ public class BisherigeFahrtenLuca extends AppCompatActivity {
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(i);
 
                         String haltestelleStart = documentSnapshot.getString(FirebaseHelper.feldStartzeitHaltestelle);
-                        String haltestelleEnde = documentSnapshot.getString(FirebaseHelper.feldAnkunftHaltestelle);
+                        //String haltestelleEnde = documentSnapshot.getString(FirebaseHelper.feldAussteigenHaltestelleUmsteigen);
                         String datumFahrt = String.valueOf(documentSnapshot.get(FirebaseHelper.feldDatum));
 
 
-                        String einfuegen = "Start: " + haltestelleStart + "\nEnde: " + haltestelleEnde + "\nDatum: " + datumFahrt;
+                        String einfuegen = "Start: " + haltestelleStart + "\nDatum: " + datumFahrt;
+                        //String einfuegen = "Start: " + haltestelleStart + "\nEnde: " + haltestelleEnde + "\nDatum: " + datumFahrt;
 
                         setBisherigeFahrtenListe(einfuegen);
 
