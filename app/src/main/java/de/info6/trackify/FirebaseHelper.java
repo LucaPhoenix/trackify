@@ -90,7 +90,7 @@ public class FirebaseHelper {
         Map<String, Object> fahrt = new HashMap<>();
         fahrt.put(feldStartzeit, startzeit);
         fahrt.put(feldGewuenschteAnkunftszeit, gewuenschteAnkunftszeit);
-        fahrt.put(feldStartzeitHaltestelle, feldStartzeitHaltestelle);
+        fahrt.put(feldStartzeitHaltestelle, haltestelleStartzeit);
         fahrt.put(feldAnkunftHaltestelle, ankunftHaltestelle);
         fahrt.put(feldStartzeitFahrt, startzeitFahrt);
         fahrt.put(feldAnkunftHaltestelleUmstieg, umsteigenAnkunfthaltestelle);
@@ -110,7 +110,6 @@ public class FirebaseHelper {
         fahrt.put(feldVerkehrsmittelUmstieg, verkehrsmittelUmstieg);
         fahrt.put(feldDatum, datum);
         fahrt.put(feldUserId, userId);
-        fahrt.put(haltestelleStartzeit, haltestelleStartzeit);
         fahrt.put(feldUserIdFirebase, uid);
 
         //Dokument speichern
