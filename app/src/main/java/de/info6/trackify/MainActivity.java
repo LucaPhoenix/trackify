@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     //Firebase Nutzer
     private FirebaseAuth mAuth;
 
+    int zaehler = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,6 +191,29 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Profil.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        //Toast für EasterEgg initialisieren
+        Toast mToast = Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT);
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                zaehler++;
+
+                int anzahlDruecken = 5 - zaehler;
+                String anzeige = "Noch " + anzahlDruecken + " mal drücken.";
+
+                mToast.setText(anzeige);
+                mToast.show();
+
+
+                if (zaehler == 5){
+                    Intent intent = new Intent(MainActivity.this, DevActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
