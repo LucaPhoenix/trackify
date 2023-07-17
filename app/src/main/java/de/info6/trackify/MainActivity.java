@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //Toast.makeText(MainActivity.this,  " Login succesfull", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(MainActivity.this,  " Login failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this,  "Login failed", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
