@@ -5,13 +5,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePicker {
 
@@ -44,12 +44,17 @@ public class NeueFahrtStartzeit extends AppCompatActivity implements OpenTimePic
         button_speichernStartzeit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                collectedData.put("Startzeit", editText_startzeit.getText().toString());
-                collectedData.put("Gewünschte Ankunftszeit", editText_gewuenschteAnkunftszeit.getText().toString());
-                Intent intent = new Intent(NeueFahrtStartzeit.this, MainActivity.class);
-                intent.putExtra("aktiveFahrtHaltestelle", true);
-                intent.putExtra("CollectedData", collectedData);
-                startActivity(intent);
+                if (editText_startzeit.getText().toString() != getResources().getString(R.string.text_zeitWaehlen)
+                        && !editText_gewuenschteAnkunftszeit.getText().toString().equals(getResources().getString(R.string.text_zeitWaehlen))){
+                    collectedData.put("Startzeit", editText_startzeit.getText().toString());
+                    collectedData.put("Gewünschte Ankunftszeit", editText_gewuenschteAnkunftszeit.getText().toString());
+                    Intent intent = new Intent(NeueFahrtStartzeit.this, MainActivity.class);
+                    intent.putExtra("aktiveFahrtHaltestelle", true);
+                    intent.putExtra("CollectedData", collectedData);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(NeueFahrtStartzeit.this,  "Bitte geben Sie beide Zeiten an, in dem Sie auf ZEIT AUSWÄHLEN drücken.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
