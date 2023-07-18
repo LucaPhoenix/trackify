@@ -5,12 +5,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.HashMap;
 
 public class Middleactivity extends AppCompatActivity {
 
     Button button_probleme, button_fahrtBeenden, button_umsteigen;
+
+    HashMap<String, Object> collectedData = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +33,22 @@ public class Middleactivity extends AppCompatActivity {
         button_umsteigen = findViewById(R.id.button_umsteigen);
         button_fahrtBeenden = findViewById(R.id.button_fahrtBeenden);
 
+        //Intent abrufen
+        Intent intentStart = getIntent();
+
+        if(intentStart != null){
+            collectedData = (HashMap<String, Object>) getIntent().getSerializableExtra("CollectedData");
+            if(collectedData != null) {
+                Log.d("----TAG", collectedData.toString());
+            }
+        }
+
 
         button_probleme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Middleactivity.this, AktiveFahrtProblem.class);
+                intent.putExtra("CollectedData", collectedData);
                 startActivity(intent);
             }
         });
@@ -40,8 +56,8 @@ public class Middleactivity extends AppCompatActivity {
         button_umsteigen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Middleactivity.this, MainActivity.class);
-                intent.putExtra("aktiveFahrtHaltestelle", true);
+                Intent intent = new Intent(Middleactivity.this, Umsteigen.class);
+                intent.putExtra("CollectedData", collectedData);
                 startActivity(intent);
             }
         });
@@ -50,6 +66,7 @@ public class Middleactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Middleactivity.this, FahrtBeenden.class);
+                intent.putExtra("CollectedData", collectedData);
                 startActivity(intent);
             }
         });
